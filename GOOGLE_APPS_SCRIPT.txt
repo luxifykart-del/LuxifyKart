@@ -1,0 +1,124 @@
+
+/**
+ * LUXIFYKART ORDER SUBMISSION - GOOGLE APPS SCRIPT
+ * 
+ * This script saves orders directly to Google Sheets
+ * Already configured with your sheet URL!
+ */
+
+const SHEET_NAME = "Orders";
+
+// Google Sheet URL - Already configured
+const SPREADSHEET_URL = "https://docs.google.com/spreadsheets/d/1zgNvCLmEM74wHclzsB_QfNThUNHuaRxUM9b4lE1YSJI/edit";
+
+function doPost(e) {
+  try {
+    // Get the sheet
+    const sheet = getOrCreateSheet();
+    
+    // Parse the incoming data
+    const data = JSON.parse(e.postData.contents);
+    
+    // Get timestamp
+    const timestamp = new Date().toLocaleString('en-IN', { 
+      timeZone: 'Asia/Kolkata',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    });
+    
+    // Prepare row data
+    const rowData = [
+      timestamp,                    // A: Date & Time
+      data.name || '',              // B: Customer Name
+      data.phone || '',             // C: Phone
+      data.address || '',           // D: Address
+      data.products || '',          // E: Products
+      data.quantity || '',          // F: Total Quantity
+      data.amount || '',            // G: Total Amount
+      data.paymentMethod || '',     // H: Payment Method
+      data.upiTransactionId || '',  // I: UPI Transaction ID
+      'Pending'                     // J: Order Status
+    ];
+    
+    // Append row
+    sheet.appendRow(rowData);
+    
+    // Return success response
+    return ContentService
+      .createTextOutput(JSON.stringify({ 
+        success: true, 
+        message: 'Order saved successfully!' 
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    // Return error response
+    return ContentService
+      .createTextOutput(JSON.stringify({ 
+        success: false, 
+        error: error.message 
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+function getOrCreateSheet() {
+  try {
+    // Try to open existing spreadsheet
+    const spreadsheet = SpreadsheetApp.openByUrl(SPREADSHEET_URL);
+    let sheet = spreadsheet.getSheetByName(SHEET_NAME);
+    
+    // Create sheet if it doesn't exist
+    if (!sheet) {
+      sheet = spreadsheet.insertSheet(SHEET_NAME);
+      // Add headers
+      sheet.appendRow([
+        'Date & Time',
+        'Customer Name',
+        'Phone',
+        'Address',
+        'Products',
+        'Quantity',
+        'Amount',
+        'Payment Method',
+        'UPI Transaction ID',
+        'Order Status'
+      ]);
+      // Format header row
+      sheet.getRange(1, 1, 1, 10).setFontWeight('bold');
+      sheet.setFrozenRows(1);
+    }
+    
+    return sheet;
+    
+  } catch (error) {
+    throw new Error('Could not access spreadsheet. Make sure the URL is correct and you have sharing permissions.');
+  }
+}
+
+// Test function
+function test() {
+  const mockData = {
+    name: 'Test Customer',
+    phone: '1234567890',
+    address: 'Test Address Delhi',
+    products: 'Test Product (₹100 x 1)',
+    quantity: '1',
+    amount: '100',
+    paymentMethod: 'COD',
+    upiTransactionId: ''
+  };
+  
+  const mockEvent = {
+    postData: {
+      contents: JSON.stringify(mockData)
+    }
+  };
+  
+  doPost(mockEvent);
+}
+

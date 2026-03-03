@@ -1,0 +1,140 @@
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Midnight Oud Essence",
+      "category": "perfumes",
+      "mrp": 4999,
+      "selling_price": 2499,
+      "image_url": "/images/perfume-luxury.png",
+      "active": true
+    },
+    {
+      "id": "p2",
+      "name": "Citrus Bloom",
+      "category": "perfumes",
+      "mrp": 2599,
+      "selling_price": 1899,
+      "image_url": "/images/perfume-citrus.png",
+      "active": true
+    },
+    {
+      "id": "p3",
+      "name": "Rose Noir",
+      "category": "perfumes",
+      "mrp": 4799,
+      "selling_price": 2999,
+      "image_url": "/images/perfume-rose.png",
+      "active": true
+    },
+    {
+      "id": "w1",
+      "name": "Chronograph Elite",
+      "category": "watches",
+      "mrp": 10499,
+      "selling_price": 8499,
+      "image_url": "/images/watch-luxury.png",
+      "active": true
+    },
+    {
+      "id": "w2",
+      "name": "Minimalist Classic",
+      "category": "watches",
+      "mrp": 5899,
+      "selling_price": 4999,
+      "image_url": "/images/watch-minimal.png",
+      "active": true
+    },
+    {
+      "id": "w3",
+      "name": "Sport Pro",
+      "category": "watches",
+      "mrp": 7200,
+      "selling_price": 6499,
+      "image_url": "/images/watch-sport.png",
+      "active": true
+    },
+    {
+      "id": "s1",
+      "name": "Oxford Premium",
+      "category": "shoes",
+      "mrp": 6599,
+      "selling_price": 5999,
+      "image_url": "/images/shoes-oxford.png",
+      "active": true
+    },
+    {
+      "id": "s2",
+      "name": "Sneaker Luxe",
+      "category": "shoes",
+      "mrp": 6999,
+      "selling_price": 4499,
+      "image_url": "/images/shoes-sneaker.png",
+      "active": true
+    },
+    {
+      "id": "s3",
+      "name": "Loafer Elite",
+      "category": "shoes",
+      "mrp": 6999,
+      "selling_price": 5499,
+      "image_url": "/images/shoes-loafer.png",
+      "active": true
+    },
+    {
+      "id": "g1",
+      "name": "Wireless Elite Earbuds",
+      "category": "gadgets",
+      "mrp": 4899,
+      "selling_price": 3999,
+      "image_url": "/images/gadget-earbuds.png",
+      "active": true
+    },
+    {
+      "id": "g2",
+      "name": "Smart Tracker Pro",
+      "category": "gadgets",
+      "mrp": 10199,
+      "selling_price": 7999,
+      "image_url": "/images/gadget-tracker.png",
+      "active": true
+    },
+    {
+      "id": "g3",
+      "name": "Power Bank Ultra",
+      "category": "gadgets",
+      "mrp": 4999,
+      "selling_price": 2999,
+      "image_url": "/images/gadget-powerbank.png",
+      "active": true
+    },
+    {
+      "id": "l1",
+      "name": "Premium Leather Wallet",
+      "category": "lifestyle",
+      "mrp": 4999,
+      "selling_price": 1999,
+      "image_url": "/images/lifestyle-wallet.png",
+      "active": true
+    },
+    {
+      "id": "l2",
+      "name": "Luxury Travel Bag",
+      "category": "lifestyle",
+      "mrp": 8999,
+      "selling_price": 6999,
+      "image_url": "/images/lifestyle-bag.png",
+      "active": true
+    },
+    {
+      "id": "l3",
+      "name": "Desk Organizer Set",
+      "category": "lifestyle",
+      "mrp": 3999,
+      "selling_price": 2499,
+      "image_url": "/images/lifestyle-organizer.png",
+      "active": true
+    }
+  ]
+}
+
