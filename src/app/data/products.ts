@@ -1,6 +1,6 @@
 // Product data interface - matches products.json structure
 export interface Product {
-  id: string;
+  id: number;
   name: string;
   price: number;
   mrp?: number;
@@ -24,7 +24,7 @@ export const categories = [
 // Default static products (fallback if JSON fails to load)
 const defaultProducts: Product[] = [
   {
-    id: 'p1',
+    id: 1,
     name: 'Midnight Oud Essence',
     price: 2499,
     mrp: 4999,
@@ -34,7 +34,7 @@ const defaultProducts: Product[] = [
     image: 'perfume-luxury',
   },
   {
-    id: 'p2',
+    id: 2,
     name: 'Citrus Bloom',
     price: 1899,
     mrp: 2599,
@@ -44,7 +44,7 @@ const defaultProducts: Product[] = [
     image: 'perfume-citrus',
   },
   {
-    id: 'p3',
+    id: 3,
     name: 'Rose Noir',
     price: 2999,
     mrp: 4799,
@@ -54,7 +54,7 @@ const defaultProducts: Product[] = [
     image: 'perfume-rose',
   },
   {
-    id: 'w1',
+    id: 4,
     name: 'Chronograph Elite',
     price: 8499,
     mrp: 10499,
@@ -64,7 +64,7 @@ const defaultProducts: Product[] = [
     image: 'watch-luxury',
   },
   {
-    id: 'w2',
+    id: 5,
     name: 'Minimalist Classic',
     price: 4999,
     mrp: 5899,
@@ -74,7 +74,7 @@ const defaultProducts: Product[] = [
     image: 'watch-minimal',
   },
   {
-    id: 'w3',
+    id: 6,
     name: 'Sport Pro',
     price: 6499,
     mrp: 7200,
@@ -84,7 +84,7 @@ const defaultProducts: Product[] = [
     image: 'watch-sport',
   },
   {
-    id: 's1',
+    id: 7,
     name: 'Oxford Premium',
     price: 5999,
     mrp: 6599,
@@ -94,7 +94,7 @@ const defaultProducts: Product[] = [
     image: 'shoes-oxford',
   },
   {
-    id: 's2',
+    id: 8,
     name: 'Sneaker Luxe',
     price: 4499,
     mrp: 6999,
@@ -104,7 +104,7 @@ const defaultProducts: Product[] = [
     image: 'shoes-sneaker',
   },
   {
-    id: 's3',
+    id: 9,
     name: 'Loafer Elite',
     price: 5499,
     mrp: 6999,
@@ -114,7 +114,7 @@ const defaultProducts: Product[] = [
     image: 'shoes-loafer',
   },
   {
-    id: 'g1',
+    id: 10,
     name: 'Wireless Elite Earbuds',
     price: 3999,
     mrp: 4899,
@@ -124,7 +124,7 @@ const defaultProducts: Product[] = [
     image: 'gadget-earbuds',
   },
   {
-    id: 'g2',
+    id: 11,
     name: 'Smart Tracker Pro',
     price: 7999,
     mrp: 10199,
@@ -134,7 +134,7 @@ const defaultProducts: Product[] = [
     image: 'gadget-tracker',
   },
   {
-    id: 'g3',
+    id: 12,
     name: 'Power Bank Ultra',
     price: 2999,
     mrp: 4999,
@@ -144,7 +144,7 @@ const defaultProducts: Product[] = [
     image: 'gadget-powerbank',
   },
   {
-    id: 'l1',
+    id: 13,
     name: 'Premium Leather Wallet',
     price: 1999,
     mrp: 4999,
@@ -154,7 +154,7 @@ const defaultProducts: Product[] = [
     image: 'lifestyle-wallet',
   },
   {
-    id: 'l2',
+    id: 14,
     name: 'Luxury Travel Bag',
     price: 6999,
     mrp: 8999,
@@ -164,7 +164,7 @@ const defaultProducts: Product[] = [
     image: 'lifestyle-bag',
   },
   {
-    id: 'l3',
+    id: 15,
     name: 'Desk Organizer Set',
     price: 2499,
     mrp: 3999,

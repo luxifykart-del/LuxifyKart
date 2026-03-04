@@ -12,7 +12,7 @@ export function SkeletonCard(props: SkeletonCardProps) {
       <div className="aspect-square bg-neutral-200 relative overflow-hidden">
         <motion.div
           animate={{ x: ["-100%", "100%"] }}
-          transition, duration: ={{ repeat: Infinity1.5, ease: "linear" }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
           className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent"
         />
       </div>
@@ -31,6 +31,7 @@ export function SkeletonCard(props: SkeletonCardProps) {
           <div className="h-8 bg-neutral-200 rounded-lg w-24" />
           <div className="h-10 bg-neutral-200 rounded-xl w-28" />
         </div>
+      </div>
     </div>
   );
 }
@@ -49,5 +50,4 @@ export function ProductSkeletonGrid(props: { count?: number }) {
     </div>
   );
 }
-</parameter>
-</create_file>
+

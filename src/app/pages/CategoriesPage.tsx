@@ -3,11 +3,11 @@ import { Link } from 'react-router';
 import { categories } from '../data/products';
 
 const categoryImages: Record<string, string> = {
-  perfumes: '/website images/perfumes.png',
-  watches: '/website images/watches.png',
-  shoes: '/website images/shoes.png',
-  gadgets: '/website images/gadgets.png',
-  lifestyle: '/website images/lifestyle and daily uses.png',
+  perfumes: '/images/perfumes.png',
+  watches: '/images/watches.png',
+  shoes: '/images/shoes.png',
+  gadgets: '/images/gadgets.png',
+  lifestyle: '/images/lifestyle-and-daily-uses.png',
 };
 
 export function CategoriesPage() {
@@ -15,7 +15,7 @@ export function CategoriesPage() {
     <div className="min-h-screen bg-neutral-50">
       <section className="relative bg-gradient-to-br from-neutral-900 to-neutral-800 text-white py-16 md:py-24">
         <div className="absolute inset-0 opacity-30">
-          <img src="/website images/homepage.png" alt="LuxifyKart" className="w-full h-full object-cover" />
+          <img src="/images/homepage.png" alt="LuxifyKart" className="w-full h-full object-cover" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-light mb-4">Shop by Category</h1>

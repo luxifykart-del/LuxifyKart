@@ -1,10 +1,61 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router';
 import { ArrowRight, Shield, Truck, CreditCard, Users } from 'lucide-react';
-import { categories, products } from '../data/products';
+import { categories } from '../data/products';
 import { ProductCard } from '../components/ProductCard';
+import { ProductSkeletonGrid } from '../components/ui/SkeletonCard';
+
+// Product interface matching the JSON structure
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  mrp?: number;
+  description?: string;
+  features?: string[];
+  category: string;
+  image: string;
+  active?: boolean;
+}
+
+interface ProductsResponse {
+  products: Product[];
+}
 
 export function HomePage() {
+  const [products, setProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        setLoading(true);
+        setError(null);
+        
+        const response = await fetch('/data/products.json');
+        
+        if (!response.ok) {
+          throw new Error(`Failed to fetch products: ${response.status}`);
+        }
+        
+        const data: ProductsResponse = await response.json();
+        
+        // Filter only active products
+        const activeProducts = data.products.filter((product) => product.active !== false);
+        setProducts(activeProducts);
+      } catch (err) {
+        console.error('Error fetching products:', err);
+        setError('Failed to load products. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
   const featuredProducts = products.slice(0, 6);
 
   return (
@@ -170,30 +221,57 @@ export function HomePage() {
             <p className="text-neutral-600">Handpicked items just for you</p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+          {/* Loading State */}
+          {loading && (
+            <ProductSkeletonGrid count={6} />
+          )}
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mt-12"
-          >
-            <Link to="/category/perfumes">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-colors font-medium"
+          {/* Error State */}
+          {error && !loading && (
+            <div className="text-center py-12">
+              <p className="text-red-500 mb-4">{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="px-6 py-2 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-colors"
               >
-                View All Products
-              </motion.button>
-            </Link>
-          </motion.div>
+                Retry
+              </button>
+            </div>
+          )}
+
+          {/* Products Grid */}
+          {!loading && !error && (
+            <>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {featuredProducts.map((product) => (
+                  <ProductCard key={product.id} product={product} />
+                ))}
+              </div>
+
+              {/* View All Button */}
+              {products.length > 6 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="text-center mt-12"
+                >
+                  <Link to="/category/perfumes">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="px-8 py-3 bg-neutral-900 text-white rounded-lg hover:bg-neutral-800 transition-colors font-medium"
+                    >
+                      View All Products
+                    </motion.button>
+                  </Link>
+                </motion.div>
+              )}
+            </>
+          )}
         </div>
       </section>
     </div>
   );
 }
+
